@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Subang Dev - Liquid Bubble Notch Navigation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- FontAwesome untuk Icon Sosial Media -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-content {
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes glowGreen {
+            0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(34, 197, 94, 0.8), 0 0 12px rgba(34, 197, 94, 0.5); }
+            50% { opacity: 0.6; text-shadow: 0 0 2px rgba(34, 197, 94, 0.4); }
+        }
+        @keyframes glowRed {
+            0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(239, 68, 68, 0.8), 0 0 12px rgba(239, 68, 68, 0.5); }
+            50% { opacity: 0.6; text-shadow: 0 0 2px rgba(239, 68, 68, 0.4); }
+        }
+        .text-glow-green {
+            color: #22c55e;
+            animation: glowGreen 2s infinite ease-in-out;
+        }
+        .text-glow-red {
+            color: #ef4444;
+            animation: glowRed 2s infinite ease-in-out;
+        }
+
+        /* LIQUID CURVED BUBBLE NAVIGATION STYLES PERSIS SEPERTI CONTOH */
+        .liquid-nav-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 10px 16px 20px 16px;
+            background: transparent;
+        }
+        .liquid-nav-bar {
+            position: relative;
+            background: #181c24;
+            border-radius: 28px;
+            display: flex;
+            width: 100%;
+            max-width: 380px;
+            height: 70px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            overflow: visible;
+        }
+        .liquid-bubble {
+            position: absolute;
+            top: -28px;
+            left: 0;
+            width: 60px;
+            height: 60px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .liquid-items {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            z-index: 20;
+        }
+        .liquid-tab {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding-top: 4px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                background-color: #0f172a;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                padding: 20px;
+            }
+            .app-frame {
+                width: 390px;
+                height: 844px;
+                background: #f8fafc;
+                border-radius: 44px;
+                box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+                overflow: hidden;
+                border: 8px solid #1e293b;
+                position: relative;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 antialiased">
+
+    <!-- WRAPPER APLIKASI MOBILE -->
+    <div class="app-frame flex flex-col h-full w-full max-w-full overflow-hidden relative bg-slate-50">
+
+        <!-- HEADER / TOP APP BAR -->
+        <header class="bg-red-600 text-white sticky top-0 z-40 px-4 py-3.5 flex items-center justify-between shadow-md">
+            <div class="flex items-center space-x-2.5">
+                <div class="w-9 h-9 rounded-2xl bg-white text-red-600 flex items-center justify-center font-black text-base shadow-sm">
+                    <i data-lucide="zap" class="w-5 h-5 fill-red-600"></i>
+                </div>
+                <div>
+                    <h1 class="font-black text-white text-sm tracking-wider uppercase leading-none">SUBANG DEV</h1>
+                    <p class="text-[10px] text-red-100 font-medium mt-1 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Official Store
+                    </p>
+                </div>
+            </div>
+            <a href="https://wa.me/6281223742357" target="_blank" class="bg-white/15 text-white text-[11px] font-semibold px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-md flex items-center gap-1.5 shadow-xs hover:bg-white/25 transition">
+                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                <span>Fast WA</span>
+            </a>
+        </header>
+
+        <!-- AREA KONTEN UTAMA (SCROLLABLE) -->
+        <main class="flex-1 overflow-y-auto no-scrollbar pb-6">
+            
+            <!-- SLIDER PROMO -->
+            <section class="p-4 pb-2">
+                <div class="relative w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-lg bg-red-100 border border-red-100">
+                    <div id="slider-container" class="flex w-full h-full transition-transform duration-700 ease-in-out">
+                        <div class="w-full h-full flex-shrink-0 relative">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwfgD_7AsiXcalv_Oj9l6f9AwzaS-t1kHFuTuwdX5RNLxsm5uEVr6myknRQ4XaEg2Fb_JMbMMLjhaAoSrj557IEHK5R9uHO54FLTWYAeHpGOW7IiqIMMb49PShE8Xt6YoZrAEckQgyKZBaC9MZl5c_WzZ4XTIdmIsZQNWCucclXDj5ndLmVI7H_z8z3IQ/s1774/file_00000000b334820bb77ca462ba945e2f.png" class="w-full h-full object-cover" alt="Banner 1">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-3.5">
+                            </div>
+                        </div>
+                        <div class="w-full h-full flex-shrink-0 relative">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvs2Dl5lM1xKWPq4IywuOFxe112EivJaV5pcIhR2eo1tGVtxfH_-VWAnLIxCTFoVkUWy7ciciHD_pA9MZdFCnWLV4AocEQ2sYNPRQEwaXqxzJCrtvVswPyMDJFFiaEeQO7iBVLnSSpr0xw0vGAtCWdNUu-AnrqXflaSxUEN3aC2EknGRVOYEowtbF3Kew/s320/file_00000000f51c82308ea9716d9b74f5ed.png" class="w-full h-full object-cover" alt="Banner 2">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-3.5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2.5 right-3 flex space-x-1.5 z-10">
+                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/60 transition-all"></span>
+                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/60 transition-all"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- KONTEN AREA -->
+            <section class="px-4 mt-2">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 id="judul-kategori" class="font-bold text-gray-900 text-xs uppercase tracking-wider">Aktivasi Tool & Schematic</h3>
+                    <span id="sub-judul-kategori" class="text-[11px] text-red-600 font-semibold flex items-center gap-1">
+                        <i data-lucide="Flame" class="w-3.5 h-3.5 fill-red-600"></i> Populer
+                    </span>
+                </div>
+
+                <!-- CONTAINER PRODUK -->
+                <div id="daftar-produk" class="grid grid-cols-2 gap-3 fade-in-content">
+                    <!-- Dinamis via JS -->
+                </div>
+            </section>
+
+        </main>
+
+        <!-- LIQUID BUBBLE NOTCH NAVIGATION BAR (PERSIS SEPERTI GAMBAR CONTOH) -->
+        <nav class="liquid-nav-container sticky bottom-0 z-40">
+            <div class="liquid-nav-bar" id="liquid-wrapper">
+                <!-- Lingkaran Bulat Putih Mengapung -->
+                <div id="liquid-bubble-indicator" class="liquid-bubble">
+                    <div id="liquid-active-icon" class="text-red-600">
+                        <i data-lucide="key-round" class="w-5 h-5"></i>
+                    </div>
+                </div>
+
+                <div class="liquid-items">
+                    <button onclick="gantiKategori('activasi', 0)" class="liquid-tab">
+                        <span class="tab-icon text-transparent"><i data-lucide="key-round" class="w-5 h-5"></i></span>
+                        <span class="text-[9px] font-bold text-gray-400 mt-1">Aktivasi</span>
+                    </button>
+                    <button onclick="gantiKategori('remote', 1)" class="liquid-tab">
+                        <span class="tab-icon text-gray-400"><i data-lucide="laptop" class="w-5 h-5"></i></span>
+                        <span class="text-[9px] font-medium text-gray-400 mt-1">Remote</span>
+                    </button>
+                    <button onclick="gantiKategori('imei', 2)" class="liquid-tab">
+                        <span class="tab-icon text-gray-400"><i data-lucide="smartphone" class="w-5 h-5"></i></span>
+                        <span class="text-[9px] font-medium text-gray-400 mt-1">Pairing</span>
+                    </button>
+                    <button onclick="gantiKategori('sewa', 3)" class="liquid-tab">
+                        <span class="tab-icon text-gray-400"><i data-lucide="clock" class="w-5 h-5"></i></span>
+                        <span class="text-[9px] font-medium text-gray-400 mt-1">Sewa</span>
+                    </button>
+                    <button onclick="gantiKategori('sosial', 4)" class="liquid-tab">
+                        <span class="tab-icon text-gray-400"><i data-lucide="share-2" class="w-5 h-5"></i></span>
+                        <span class="text-[9px] font-medium text-gray-400 mt-1">Sosial</span>
+                    </button>
+                    <button onclick="gantiKategori('infoserver', 5)" class="liquid-tab">
+                        <span class="tab-icon text-gray-400"><i data-lucide="activity" class="w-5 h-5"></i></span>
+                        <span class="text-[9px] font-medium text-gray-400 mt-1">Server</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MODAL PILIHAN PAKET & CHECKOUT WHATSAPP -->
+        <div id="modalCheckout" class="absolute inset-0 bg-black/60 hidden items-end justify-center z-50 backdrop-blur-xs">
+            <div class="bg-white rounded-t-3xl w-full p-5 shadow-2xl relative animate-slide-up border-t border-red-100 max-h-[85vh] overflow-y-auto">
+                <button onclick="tutupModal()" class="absolute top-4 right-4 text-gray-400 hover:text-red-600 transition p-1">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                
+                <div class="flex items-center gap-1.5 text-red-600 mb-1">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                    <h4 class="text-[10px] uppercase font-bold tracking-wider">SUBANG DEV Checkout</h4>
+                </div>
+                
+                <h3 id="modalNamaProduk" class="text-base font-bold text-gray-900 mb-1">Nama Produk</h3>
+                <p id="modalFungsiProduk" class="text-xs text-gray-500 mb-4 leading-relaxed">Fungsi layanan...</p>
+
+                <p class="text-xs font-semibold text-gray-700 mb-2.5 flex items-center gap-1">
+                    <i data-lucide="tag" class="w-3.5 h-3.5 text-red-600"></i> Pilih Varian / Jenis Layanan:
+                </p>
+
+                <!-- PILIHAN VARIAN DINAMIS -->
+                <div id="modalVarianContainer" class="space-y-2 mb-5">
+                    <!-- Diisi lewat JavaScript -->
+                </div>
+
+                <!-- TOMBOL WHATSAPP -->
+                <button onclick="kirimKeWhatsApp()" class="w-full bg-emerald-600 text-white font-semibold py-3.5 rounded-2xl hover:bg-emerald-700 transition flex items-center justify-center space-x-2 text-xs shadow-lg shadow-emerald-600/20 active:scale-[0.98]">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                    <span>Beli Sekarang</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const dataAktivasi = [
+            {
+                nama: "UnlockTool",
+                fungsi: "Tool profesional unlock & flashing berbagai merek Android terlengkap.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtiyAxsXgTm9RJmpe9gl1Ir7Uk_nynWSp0UWHxbeidPTZjKuaIzWYJWD_TKM-93o69C3F1ssWeBXcuCPmU6n2Dm8A0LWQ_PQUMxNvS7SN0rJaFVDPipQLD5QdOw-uhKdDG52Bem98E-XURkl9HPrKrc5H3DWaG_VBEt51I8Ogm9uC5XOYdg9pKh6LL/s865/logo_box.png",
+                hargaMulai: "330.000",
+                varian: [
+                    { durasi: "3 Bulan", harga: "330000", label: "Rp 330.000" },
+                    { durasi: "6 Bulan", harga: "490000", label: "Rp 490.000" },
+                    { durasi: "12 Bulan", harga: "780000", label: "Rp 780.000" }
+                ]
+            },
+            {
+                nama: "CF Tool",
+                fungsi: "Solusi flashing dan repair perangkat Android mudah dan lengkap.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYHHJ5UaELcgzeyeCtJEcmh-O93GSNP8LJvLTBkXX078V9G8RBpEoCODwL_ONyhE_XmcnIkBaOYfNShuADU0qrvnhGrX08OuTLd53cq-mjELC2KRNOmh377AzspOHX7GXFzBvBXi3XZNOrpZOar8nMPZzncPYH7wlBz8nGHCdZg1-ZFTVS4BFpnPIM/s16000/cftool.jpeg",
+                hargaMulai: "100.000",
+                varian: [
+                    { durasi: "1 Bulan", harga: "100000", label: "Rp 100.000" },
+                    { durasi: "3 Bulan", harga: "200000", label: "Rp 200.000" },
+                    { durasi: "6 Bulan", harga: "320000", label: "Rp 320.000" },
+                    { durasi: "12 Bulan", harga: "440000", label: "Rp 440.000" }
+                ]
+            },
+            {
+                nama: "Borneo Schematic",
+                fungsi: "Schematic hardware profesional Android terlengkap dan akurat.",
+                foto: "https://image.torob.com/base/images/Kj/p7/Kjp7OB8p5IutIKOU.jpg_/560x560.webp",
+                hargaMulai: "250.000",
+                varian: [
+                    { durasi: "3 Bulan", harga: "250000", label: "Rp 250.000" },
+                    { durasi: "3 Bulan 2PC", harga: "385000", label: "Rp 385.000" },
+                    { durasi: "6 Bulan", harga: "350000", label: "Rp 350.000" },
+                    { durasi: "6 Bulan 2PC", harga: "600000", label: "Rp 600.000" },
+                    { durasi: "12 Bulan", harga: "600000", label: "Rp 600.000" },
+                    { durasi: "12 Bulan 2PC", harga: "850000", label: "Rp 850.000" }
+                ]
+            },
+            {
+                nama: "Pragmafix Schematic",
+                fungsi: "Schematic jalur perbaikan hardware handphone terlengkap.",
+                foto: "https://tse4.mm.bing.net/th/id/OIP.xF9EzMCwrR16b3fGXESpPQHaHa?pid=Api&P=0&h=220",
+                hargaMulai: "125.000",
+                varian: [
+                    { durasi: "3 Bulan", harga: "125000", label: "Rp 125.000" },
+                    { durasi: "6 Bulan", harga: "225000", label: "Rp 225.000" },
+                    { durasi: "12 Bulan", harga: "350000", label: "Rp 350.000" }
+                ]
+            },
+            {
+                nama: "Orion Schematic",
+                fungsi: "Panduan skematik perbaikan hardware ponsel profesional.",
+                foto: "https://orion.estechschematics.com/assets/orion-logo.png",
+                hargaMulai: "50.000",
+                varian: [
+                    { durasi: "1 Bulan", harga: "50000", label: "Rp 50.000" },
+                    { durasi: "3 Bulan", harga: "100000", label: "Rp 100.000" },
+                    { durasi: "6 Bulan", harga: "200000", label: "Rp 200.000" },
+                    { durasi: "12 Bulan", harga: "370000", label: "Rp 370.000" },
+                    { durasi: "12 Bulan 2PC", harga: "600000", label: "Rp 600.000" }
+                ]
+            },
+            {
+                nama: "DFT Tool",
+                fungsi: "Solusi advanced flashing dan repair perangkat berfitur lengkap.",
+                foto: "https://www.dftprotool.com/wp-content/uploads/2021/06/DFT-PRO.jpg",
+                hargaMulai: "1.350.000",
+                varian: [
+                    { durasi: "12 Bulan", harga: "1350000", label: "Rp 1.350.000" }
+                ]
+            },
+            {
+                nama: "DT-Pro Tool",
+                fungsi: "Aktivasi DT-Pro Tool untuk kebutuhan servis handphone.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7h5_Oa_bJ4M2d8XJ9k2W9x3Q9v3X8v9X/s1600/dt-pro.png",
+                hargaMulai: "220.000",
+                varian: [
+                    { durasi: "1 Tahun", harga: "220000", label: "Rp 220.000" }
+                ]
+            },
+            {
+                nama: "E-GSM Tool",
+                fungsi: "Tool serbaguna untuk perbaikan perangkat Android.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_q9j8v_x8v9X/s1600/egsm.png",
+                hargaMulai: "190.000",
+                varian: [
+                    { durasi: "1 Tahun", harga: "190000", label: "Rp 190.000" }
+                ]
+            },
+            {
+                nama: "EFT Pro",
+                fungsi: "Easy Firmware Team Pro Tool untuk teknisi profesional.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_q9j8v_x8v9X/s1600/eft.png",
+                hargaMulai: "350.000",
+                varian: [
+                    { durasi: "1 Tahun", harga: "350000", label: "Rp 350.000" }
+                ]
+            },
+            {
+                nama: "TFM Tool Pro",
+                fungsi: "The Future of Mobile Tool untuk bypass dan flash.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_q9j8v_x8v9X/s1600/tfm.png",
+                hargaMulai: "280.000",
+                varian: [
+                    { durasi: "1 Tahun", harga: "280000", label: "Rp 280.000" }
+                ]
+            },
+            {
+                nama: "SETOOL",
+                fungsi: "Software legendaris untuk perbaikan perangkat Sony Ericsson & Android.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_q9j8v_x8v9X/s1600/setool.png",
+                hargaMulai: "450.000",
+                varian: [
+                    { durasi: "Aktivasi", harga: "450000", label: "Rp 450.000" }
+                ]
+            },
+            {
+                nama: "Octoplus Pro / FRP",
+                fungsi: "Tool multi-brand kelas atas untuk teknisi seluler.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEk_q9j8v_x8v9X/s1600/octoplus.png",
+                hargaMulai: "850.000",
+                varian: [
+                    { durasi: "Aktivasi Full", harga: "850000", label: "Rp 850.000" }
+                ]
+            }
+        ];
+
+const dataRemote = [
+    {
+        nama: "Bypass iPhone 6 s/d X",
+        fungsi: "Layanan bypass iPhone seri 6 hingga X.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkCVpI1fwBk3IpCB87gvzOCzCUfg68AZuNhAbMg_UDuSFhE5KhVbisIv1sPeVVLGn2WWpZ2ODYwFU1jOLhL6uZ9QA246WEl5g26SbgsZwx6N9dyREQ5lCMSSPIlBe-pnC9ciZYN6pcGaiY7E_KCYmGLD4yy5u8l5oD8AbnrzR7bz000i_qrHs5-63o_n0/s1448/file_00000000dafc81fa90257148aef23dad.png",
+        hargaMulai: "75.000",
+        varian: [
+            { durasi: "Bypass iPhone 6 s/d X", harga: "75000", label: "Rp 75.000" }
+        ]
+    },
+    {
+        nama: "Bypass iPhone XR s/d 17 Pro Max",
+        fungsi: "Layanan bypass iPhone XR hingga 17 Pro Max, iOS 26.1.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiB6M3pjNFPGSOjgk1SUctFi6bd6XXDiS4gG4f2DXgPifsuQXUknyEP81sCv_fNTC-1lMobCSxXv3M59ZjjR_LzOreJtmNyCSMoYtfg4XuTptTpRnrrO-JE2YDpIC1NFnOXnojw83sul_Ubb6DYlfctbUnl0UYxSJnj9luSQcD5LX4WsVw5lR9wyyn1MQA/s1448/file_000000009d0881fab58c98f0e572d97d.png",
+        hargaMulai: "100.000",
+        varian: [
+            { durasi: "iOS 26.1", harga: "100000", label: "Rp 100.000" }
+        ]
+    },
+    {
+        nama: "Bypass Hallo iPhone XR s/d 17 Pro Max",
+        fungsi: "Layanan bypass Hello Screen untuk perangkat yang kompatibel.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyWa2WltZ5BAcOimX06HS2hbYzE6_H2ffpy5XBG4tk1J063mrIHygMU18M7kQWn-7izA0oRMZOjRHCDnvqQ5th81xSz6XtKJWtdxxK-qrZyF_-0L4E-LXB77m_WQnm5Dy9IH3cwuC1hivsj7fLubUxhOXAeXtjbVX1N8Rp3Sdrppj_4csx691OOBmD5K8/s1448/file_00000000cff4820b9cefc051396fca8a.png",
+        hargaMulai: "150.000",
+        varian: [
+            { durasi: "iOS 27.0.1", harga: "150000", label: "Rp 150.000" }
+        ]
+    },
+    {
+        nama: "Bypass Passcode iPhone XR s/d 17 Pro Max",
+        fungsi: "Layanan bypass passcode untuk perangkat yang kompatibel.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyWa2WltZ5BAcOimX06HS2hbYzE6_H2ffpy5XBG4tk1J063mrIHygMU18M7kQWn-7izA0oRMZOjRHCDnvqQ5th81xSz6XtKJWtdxxK-qrZyF_-0L4E-LXB77m_WQnm5Dy9IH3cwuC1hivsj7fLubUxhOXAeXtjbVX1N8Rp3Sdrppj_4csx691OOBmD5K8/s1448/file_00000000cff4820b9cefc051396fca8a.png",
+        hargaMulai: "200.000",
+        varian: [
+            { durasi: "iOS 27.0.1", harga: "200000", label: "Rp 200.000" }
+        ]
+    },
+    {
+        nama: "FRP Samsung",
+        fungsi: "Layanan FRP Samsung untuk perangkat yang memenuhi syarat.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwd720r32ico-MAcRCjbfsfkJUZfqF-uGNf1zTw5rS2pSZS8SFGZkFD6XOdNom4cTn-AMemIEJVFEp4i6kUoBrGqWLko5VS1hsdWAmooAwi2BmH8M9_sCgPxhYl1s38TE7tDRimaekymr6oT1tmZX7ulOf6Y0byzu4OnVUFQlD-R3V4EZxufdaPZL5354/s1448/file_00000000a37882118a405400cee0409b.png",
+        hargaMulai: "150.000",
+        varian: [
+            { durasi: "FRP Samsung", harga: "150000", label: "Rp 150.000" }
+        ]
+    },
+    {
+        nama: "FRP Xiaomi",
+        fungsi: "Layanan FRP Xiaomi untuk perangkat yang kompatibel.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHcLC1sLKdtXb9jH9dQ2WzNgXWeDDAlhyphenhyphenObLWpJu5u0APH6ekEH5q-BMkqA7fcm569EhreBotUF1US0odDXFPy0kr5O8WqWH-YwigkeM17nk4zfRRJd4jQvCBmG31WhAU_uXT9WnBYvOGzIZOPLvqTfKmnFvvS3-Vt7yAnxeZub5Rx93YiReogSHjzS7o/s1448/file_00000000cf6082118526173d5e118b2e.png",
+        hargaMulai: "100.000",
+        varian: [
+            { durasi: "FRP Xiaomi", harga: "100000", label: "Rp 100.000" }
+        ]
+    },
+    {
+        nama: "Mi-Cloud By Server",
+        fungsi: "Layanan Mi Cloud melalui server untuk perangkat yang memenuhi syarat.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNIF6A1h2Bj0ek-6PJQWqrGKXhuiEv-mahPRZ07CRvYE6vQ3tB4ae8BQbB3-EMwWCZFXZ_n0X3mHyfFhlwlvFvFI4IBHeVvU4IeHDCih_yitq7dHxqjcvGVnEl7V1LQTP5L3o5oSAPBT-qvAvjcojYgV2qK1oCjXzPFB0D0SN9QzcWkg3TmW5kz2gPzTQ/s1448/file_00000000a530821189ff96e575788461.png",
+        hargaMulai: "100.000",
+        varian: [
+            { durasi: "Mi-Cloud By Server", harga: "100000", label: "Rp 100.000" }
+        ]
+    },
+    {
+        nama: "FRP Realme",
+        fungsi: "Layanan FRP Realme dengan dukungan chipset MediaTek dan Qualcomm.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEho4OX6Wc4Ri7SSJEWKNcmeH0uJacDHX8iIg515DuQvo60y_gqKGuh6lpPJV7IuPKJJWaQnq11jz7VTBKdAzqQhOeGKifP2l0waXuj2GD9Q-DoffRyadyNYGSGZQLrT_ZBHv5KSziBtlFduEqpYxLQWN6ij7r1yh3MZGKCmjdAKp4AT1ElYIxdyLnMG6yQ/s1448/file_000000008a6082118b4607233ef996b6.png",
+        hargaMulai: "175.000",
+        varian: [
+            { durasi: "MediaTek / Qualcomm", harga: "175000", label: "Rp 175.000" }
+        ]
+    },
+    {
+        nama: "Huawei ID",
+        fungsi: "Layanan Huawei ID dengan pilihan lokal dan luar.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh__mYj_YHghOHJ7ZZbq-VXnFuZHJd_4rJgPyYjHfnxH7mUKvRaTukj0JKN0JDc_SCbxCX7aSOJdz7bC8jKFhv1bc25ZXKYoz5aV-6CM_wpaJqf5sRrVYGxUT5GAZ9aa7IOYRjwlhXsuiKryTnVq58VhePPzlcAbDhEi8NgSXg-asZRZB0L5E4X0r2byi8/s1448/file_00000000fd5c82079e26fd86ba3d3687.png",
+        hargaMulai: "600.000",
+        varian: [
+            { durasi: "Lokal", harga: "600000", label: "Rp 600.000" },
+            { durasi: "Luar", harga: "800000", label: "Rp 800.000" }
+        ]
+    },
+    {
+        nama: "Infinix ID / Tecno ID / Itel ID",
+        fungsi: "Pilihan layanan ID lokal sesuai jenis perangkat dan kebutuhan.",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_wcxxkwPzdgPs0kkGo4NOiDNYyPUSunaZonppB9nt5T0zp-TxgLzpSt3klKokMUZtAqlI1I5jDoLBOkupN99HrJpqvlehydECT21bcjGVRa0fEpQFb7Xif0eLa5u2KEt4SiD5eigBDdSJtMLWKk0O2KOlE879rwITX8ddtULBTjmnhJ3eQkix_7Y15tQ/s1448/file_00000000359082119ab1a2c3b67bd433.png",
+        hargaMulai: "100.000",
+        varian: [
+            { durasi: "Dengan IMEI", harga: "100000", label: "Rp 100.000" },
+            { durasi: "Tanpa IMEI", harga: "120000", label: "Rp 120.000" }
+        ]
+    }
+];
+
+const dataImei = [
+    {
+        nama: "Pairing 3B Semi Fast",
+        fungsi: "Layanan pairing dengan estimasi pengerjaan semi-fast.",
+        foto: "https://play-lh.googleusercontent.com/7RyQmS6GG7S962X35wnhlXeJWF25bocYhnCP2lRMDMA2vrJWXrwIR9SK-OAPJeXZaOU=w240-h480-rw",
+        hargaMulai: "175.000",
+        varian: [
+            { durasi: "3B Semi Fast", harga: "175000", label: "Rp 175.000" }
+        ]
+    },
+    {
+        nama: "Pairing 3B Slow",
+        fungsi: "Layanan pairing dengan estimasi pengerjaan slow.",
+        foto: "https://play-lh.googleusercontent.com/7RyQmS6GG7S962X35wnhlXeJWF25bocYhnCP2lRMDMA2vrJWXrwIR9SK-OAPJeXZaOU=w240-h480-rw",
+        hargaMulai: "150.000",
+        varian: [
+            { durasi: "3B Slow", harga: "150000", label: "Rp 150.000" }
+        ]
+    },
+    {
+        nama: "Pairing 1B Semi Fast",
+        fungsi: "Layanan pairing dengan estimasi pengerjaan semi-fast.",
+        foto: "https://play-lh.googleusercontent.com/7RyQmS6GG7S962X35wnhlXeJWF25bocYhnCP2lRMDMA2vrJWXrwIR9SK-OAPJeXZaOU=w240-h480-rw",
+        hargaMulai: "125.000",
+        varian: [
+            { durasi: "1B Semi Fast", harga: "125000", label: "Rp 125.000" }
+        ]
+    },
+    {
+        nama: "Cek CEIR",
+        fungsi: "Pengecekan status CEIR perangkat.",
+        foto: "https://play-lh.googleusercontent.com/7RyQmS6GG7S962X35wnhlXeJWF25bocYhnCP2lRMDMA2vrJWXrwIR9SK-OAPJeXZaOU=w240-h480-rw",
+        hargaMulai: "10.000",
+        varian: [
+            { durasi: "Cek CEIR", harga: "10000", label: "Rp 10.000" }
+        ]
+    }
+];
+
+        const dataSewa = [
+            {
+                nama: "UnlockTool (Sewa)",
+                fungsi: "Sewa akses akun UnlockTool resmi durasi singkat.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtiyAxsXgTm9RJmpe9gl1Ir7Uk_nynWSp0UWHxbeidPTZjKuaIzWYJWD_TKM-93o69C3F1ssWeBXcuCPmU6n2Dm8A0LWQ_PQUMxNvS7SN0rJaFVDPipQLD5QdOw-uhKdDG52Bem98E-XURkl9HPrKrc5H3DWaG_VBEt51I8Ogm9uC5XOYdg9pKh6LL/s865/logo_box.png",
+                hargaMulai: "8.000",
+                varian: [
+                    { durasi: "3 Jam", harga: "8000", label: "Rp 8.000" },
+                    { durasi: "6 Jam", harga: "10000", label: "Rp 10.000" },
+                    { durasi: "12 Jam", harga: "15000", label: "Rp 15.000" },
+                    { durasi: "24 Jam", harga: "24000", label: "Rp 24.000" }
+                ]
+            },
+            {
+                nama: "Sigma Plus (Dongle)",
+                fungsi: "Sewa dongle Sigma Plus untuk kebutuhan servis spesifik.",
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOh388f1CkLN4H_t-fsJgi8XQmw9lMXdWlQ4SunVeuWr-jA7SDBHKz6Y&s=10",
+                hargaMulai: "130.000",
+                varian: [
+                    { durasi: "3 Jam", harga: "130000", label: "Rp 130.000" }
+                ]
+            },
+            {
+                nama: "Z3X Samsung Tool Pro",
+                fungsi: "Sewa tool khusus perbaikan perangkat Samsung.",
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn0NJbM7K1tzqvAmwf4XvP3DAP1NSKMzE9VW2S4MKY7176CWkX2KiXVPA&s=10",
+                hargaMulai: "60.000",
+                varian: [
+                    { durasi: "1 Jam", harga: "60000", label: "Rp 60.000" },
+                    { durasi: "2 Jam", harga: "70000", label: "Rp 70.000" },
+                    { durasi: "3 Jam", harga: "80000", label: "Rp 80.000" }
+                ]
+            },
+            {
+                nama: "CFTOOL (Sewa)",
+                fungsi: "Sewa akses CFTOOL durasi fleksibel jam-an.",
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn5SlTZiaOsP01WYaUxzoqeeuI4pbac7UV_RufTSj_Cx-hUoVrpG0peKxU&s=10",
+                hargaMulai: "9.000",
+                varian: [
+                    { durasi: "3 Jam", harga: "9000", label: "Rp 9.000" },
+                    { durasi: "12 Jam", harga: "20000", label: "Rp 20.000" },
+                    { durasi: "24 Jam", harga: "25000", label: "Rp 25.000" }
+                ]
+            },
+            {
+                nama: "TSM TOOL (Sewa)",
+                fungsi: "Sewa TSM Tool untuk repair dan unlock cepat.",
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1wS5LMnt7O840UpF_NWVJu_BEsPzLyTBTQ&s",
+                hargaMulai: "25.000",
+                varian: [
+                    { durasi: "6 Jam", harga: "25000", label: "Rp 25.000" },
+                    { durasi: "12 Jam", harga: "35000", label: "Rp 35.000" }
+                ]
+            },
+            {
+                nama: "DFTPro (Sewa)",
+                fungsi: "Sewa akses DFTPro profesional cepat.",
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFD_lAbihdJaSeQGa6uIJPSD9yQQbhWOmRLig9pPF40bxNEu2d7xse64U&s=10",
+                hargaMulai: "10.000",
+                varian: [
+                    { durasi: "3 Jam", harga: "10000", label: "Rp 10.000" },
+                    { durasi: "6 Jam", harga: "15000", label: "Rp 15.000" },
+                    { durasi: "12 Jam", harga: "25000", label: "Rp 25.000" },
+                    { durasi: "24 Jam", harga: "35000", label: "Rp 35.000" }
+                ]
+            },
+            {
+                nama: "Chimera Tool (Sewa)",
+                fungsi: "Sewa akses Chimera Tool untuk repair multibrand.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_q9j8v_x8v9X/s1600/chimera.png",
+                hargaMulai: "15.000",
+                varian: [
+                    { durasi: "3 Jam", harga: "15000", label: "Rp 15.000" },
+                    { durasi: "6 Jam", harga: "25000", label: "Rp 25.000" }
+                ]
+            },
+            {
+                nama: "Hydra Tool (Sewa)",
+                fungsi: "Sewa Hydra Tool dongle digital durasi fleksibel.",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_q9j8v_x8v9X/s1600/hydra.png",
+                hargaMulai: "10.000",
+                varian: [
+                    { durasi: "3 Jam", harga: "10000", label: "Rp 10.000" },
+                    { durasi: "12 Jam", harga: "20000", label: "Rp 20.000" }
+                ]
+            }
+        ];
+
+        const dataSosial = [
+            { nama: "WhatsApp Admin", fungsi: "Hubungi admin langsung via WhatsApp.", icon: "fab fa-whatsapp", link: "https://wa.me/6281223742357" },
+            { nama: "Telegram Channel", fungsi: "Bergabung dengan channel & grup resmi.", icon: "fab fa-telegram", link: "https://t.me/" },
+            { nama: "YouTube Subang Dev", fungsi: "Tutorial & video informasi seputar tool.", icon: "fab fa-youtube", link: "https://youtube.com/" },
+            { nama: "Facebook Komunitas", fungsi: "Bergabung dalam forum komunitas teknisi.", icon: "fab fa-facebook", link: "https://facebook.com/" }
+        ];
+
+        const infoServerList = [
+            { nama: "1B - 3B", status: "online" },
+            { nama: "FRP VIVO", status: "online" },
+            { nama: "FRP OPPO", status: "online" },
+            { nama: "FRP REALME", status: "online" },
+            { nama: "FRP XIAOMI", status: "online" },
+            { nama: "FRP MOTOROLA", status: "online" },
+            { nama: "HUAWEI ID", status: "online" },
+            { nama: "INFINIX-TECNO-ITEL ID", status: "online" },
+            { nama: "BYPASS IPHONE", status: "online" }
+        ];
+
+        const iconNames = ['key-round', 'laptop', 'smartphone', 'clock', 'share-2', 'activity'];
+        const nomorWhatsApp = "6281223742357";
+        let produkTerpilih = {};
+
+        // Auto Slider Foto Bergeser
+        let currentSlide = 0;
+        const totalSlides = 2;
+        function updateSlider() {
+            const slider = document.getElementById('slider-container');
+            const dots = document.querySelectorAll('.dot');
+            if(slider) {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                dots.forEach((dot, index) => {
+                    dot.className = index === currentSlide ? "dot w-4 h-1.5 rounded-full bg-white transition-all duration-300" : "dot w-1.5 h-1.5 rounded-full bg-white/60 transition-all duration-300";
+                });
+            }
+        }
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }, 4000);
+
+        // Fungsi Ganti Kategori dengan Animasi Bubble Mengapung Persis Gambar Referensi
+        function gantiKategori(kategori, index) {
+            const wrapper = document.getElementById('liquid-wrapper');
+            const bubble = document.getElementById('liquid-bubble-indicator');
+            const activeIcon = document.getElementById('liquid-active-icon');
+
+            // Kalkulasi posisi X persis di tengah tombol menu yang diklik (lebar bubble 60px)
+            const tabWidth = wrapper.offsetWidth / 6;
+            const targetX = (index * tabWidth) + (tabWidth / 2) - 30;
+            bubble.style.transform = `translateX(${targetX}px)`;
+
+            // Ganti icon di dalam bubble putih
+            activeIcon.innerHTML = `<i data-lucide="${iconNames[index]}" class="w-5 h-5"></i>`;
+            lucide.createIcons();
+
+            // Sembunyikan icon pada baris bawah tab aktif, dan tampilkan kembali untuk tab non-aktif
+            document.querySelectorAll('.liquid-tab').forEach((btn, i) => {
+                const tabIcon = btn.querySelector('.tab-icon');
+                const tabLabel = btn.querySelector('span:last-child');
+                
+                if (i === index) {
+                    tabIcon.className = "tab-icon text-transparent";
+                    tabLabel.className = "text-[9px] font-bold text-gray-200 mt-1";
+                } else {
+                    tabIcon.className = "tab-icon text-gray-400";
+                    tabLabel.className = "text-[9px] font-medium text-gray-400 mt-1";
+                }
+            });
+
+            const container = document.getElementById('daftar-produk');
+            container.classList.remove('fade-in-content');
+            void container.offsetWidth;
+            container.classList.add('fade-in-content');
+
+            if (kategori === 'infoserver') {
+                document.getElementById('judul-kategori').innerText = "Status Jaringan & Server";
+                document.getElementById('sub-judul-kategori').innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Real-time';
+                renderInfoServer();
+            } else if (kategori === 'sosial') {
+                document.getElementById('judul-kategori').innerText = "Sosial Media Resmi";
+                document.getElementById('sub-judul-kategori').innerHTML = '<i data-lucide="share-2" class="w-3.5 h-3.5 text-red-600"></i> Hubungi Kami';
+                renderSosial();
+            } else {
+                let namaKat = kategori === 'activasi' ? 'Aktivasi' : kategori === 'remote' ? 'Remote Service' : kategori === 'imei' ? 'Pairing IMEI' : kategori === 'sewa' ? 'Sewa Tool' : 'Layanan';
+                document.getElementById('judul-kategori').innerText = `Pilihan Layanan ${namaKat}`;
+                document.getElementById('sub-judul-kategori').innerHTML = '<i data-lucide="Flame" class="w-3.5 h-3.5 fill-red-600"></i> Populer';
+                renderProduk(kategori);
+            }
+        }
+
+        // Render Produk Grid 2 Kolom
+        function renderProduk(kategori) {
+            const container = document.getElementById('daftar-produk');
+            container.className = "grid grid-cols-2 gap-3 fade-in-content";
+            container.innerHTML = "";
+
+            let dataset = kategori === 'activasi' ? dataAktivasi : kategori === 'remote' ? dataRemote : kategori === 'imei' ? dataImei : dataSewa;
+
+            dataset.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-xs flex flex-col justify-between transition-all duration-200 hover:shadow-md";
+                card.innerHTML = `
+                    <div>
+                        <div class="relative overflow-hidden aspect-[4/3] bg-slate-100 p-2 flex items-center justify-center">
+                            <img src="${item.foto}" alt="${item.nama}" class="w-full h-full object-cover rounded-xl">
+                        </div>
+                        <div class="p-3">
+                            <h4 class="font-bold text-xs text-gray-900 line-clamp-1 leading-tight">${item.nama}</h4>
+                            <p class="text-gray-400 text-[10px] line-clamp-2 mt-1 mb-2.5">${item.fungsi}</p>
+                        </div>
+                    </div>
+                    <div class="p-3 pt-0 flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-red-600">Mulai ${item.hargaMulai}</span>
+                        <button onclick='bukaModal(${JSON.stringify(item)})' class="bg-red-600 text-white text-[11px] font-semibold px-3 py-1.5 rounded-xl shadow-xs hover:bg-red-700 transition flex items-center gap-1 active:scale-95">
+                            <span>Pilih</span>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // Render Sosial Media Grid
+        function renderSosial() {
+            const container = document.getElementById('daftar-produk');
+            container.className = "grid grid-cols-2 gap-3 fade-in-content";
+            container.innerHTML = "";
+
+            dataSosial.forEach(item => {
+                const card = document.createElement('a');
+                card.href = item.link;
+                card.target = "_blank";
+                card.className = "bg-white p-3.5 rounded-2xl border border-gray-100 shadow-xs flex flex-col items-center text-center justify-between hover:border-red-200 transition";
+                card.innerHTML = `
+                    <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-2">
+                        <i class="${item.icon} text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xs text-gray-900 mb-1">${item.nama}</h4>
+                        <p class="text-[10px] text-gray-400 leading-tight">${item.fungsi}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Render Tampilan Info Server
+        function renderInfoServer() {
+            const container = document.getElementById('daftar-produk');
+            container.className = "grid grid-cols-1 gap-2.5 fade-in-content";
+            container.innerHTML = "";
+
+            infoServerList.forEach(server => {
+                const isOnline = server.status === "online";
+                const statusClass = isOnline ? "text-glow-green" : "text-glow-red";
+                const statusText = isOnline ? "ONLINE" : "OFFLINE";
+                const statusBg = isOnline ? "bg-emerald-50 border-emerald-100" : "bg-red-50 border-red-100";
+                const iconName = isOnline ? "check-circle-2" : "alert-circle";
+
+                const card = document.createElement('div');
+                card.className = `flex items-center justify-between p-3.5 rounded-2xl border ${statusBg} shadow-2xs transition-all`;
+                card.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl flex items-center justify-center bg-white shadow-xs text-gray-700 font-bold">
+                            <i data-lucide="server" class="w-4 h-4 text-red-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xs text-gray-900">${server.nama}</h4>
+                            <p class="text-[10px] text-gray-500 mt-0.5">Gateway & API Connected</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-1.5 font-black text-xs px-3 py-1.5 rounded-xl bg-white shadow-2xs border border-gray-100 ${statusClass}">
+                        <i data-lucide="${iconName}" class="w-3.5 h-3.5"></i>
+                        <span>${statusText}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // Modal Handler Dinamis Varian
+        function bukaModal(item) {
+            produkTerpilih = item;
+            document.getElementById('modalNamaProduk').innerText = item.nama;
+            document.getElementById('modalFungsiProduk').innerText = item.fungsi;
+            
+            const varianContainer = document.getElementById('modalVarianContainer');
+            varianContainer.innerHTML = "";
+
+            item.varian.forEach((v, idx) => {
+                const label = document.createElement('label');
+                label.className = "flex items-center justify-between p-3.5 border border-gray-200 rounded-2xl cursor-pointer hover:border-red-600 transition text-xs bg-white shadow-2xs";
+                label.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <input type="radio" name="durasi" value="${v.durasi}" data-harga="${v.harga}" ${idx === 0 ? 'checked' : ''} class="text-red-600 focus:ring-red-500 w-4 h-4">
+                        <span class="font-bold text-gray-800 text-sm">${v.durasi}</span>
+                    </div>
+                    <span class="font-bold text-red-600 text-sm">${v.label}</span>
+                `;
+                varianContainer.appendChild(label);
+            });
+
+            document.getElementById('modalCheckout').classList.remove('hidden');
+            document.getElementById('modalCheckout').classList.add('flex');
+        }
+
+        function tutupModal() {
+            document.getElementById('modalCheckout').classList.remove('flex');
+            document.getElementById('modalCheckout').classList.add('hidden');
+        }
+
+        // Kirim WhatsApp
+        function kirimKeWhatsApp() {
+            const selectedRadio = document.querySelector('input[name="durasi"]:checked');
+            if (!selectedRadio) {
+                alert("Silakan pilih varian layanan terlebih dahulu!");
+                return;
+            }
+
+            const varian = selectedRadio.value;
+            const harga = selectedRadio.getAttribute('data-harga');
+
+            const pesan = `Halo Admin Subang Dev, saya ingin memesan layanan digital berikut:
+
+📦 *Layanan:* ${produkTerpilih.nama}
+💡 *Fungsi:* ${produkTerpilih.fungsi}
+⚙️ *Varian/Jenis:* ${varian}
+💰 *Total Biaya:* Rp ${parseInt(harga).toLocaleString('id-ID')}
+
+Mohon informasi langkah selanjutnya untuk proses pengerjaan/pembayaran. Terima kasih!`;
+
+            const urlWA = `https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
+            window.open(urlWA, '_blank');
+            tutupModal();
+        }
+
+        window.onload = function() {
+            gantiKategori('activasi', 0);
+            updateSlider();
+            lucide.createIcons();
+        };
+
+        window.onresize = function() {
+            const activeIndex = iconNames.findIndex((icon, idx) => {
+                const tabs = document.querySelectorAll('.tab-icon');
+                return tabs[idx].classList.contains('text-transparent');
+            });
+            if(activeIndex !== -1) {
+                gantiKategori(activeIndex === 0 ? 'activasi' : activeIndex === 1 ? 'remote' : activeIndex === 2 ? 'imei' : activeIndex === 3 ? 'sewa' : activeIndex === 4 ? 'sosial' : 'infoserver', activeIndex);
+            }
+        };
+    </script>
+</body>
+</html>
