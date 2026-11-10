@@ -4,26 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Subang Dev - Liquid Bubble Notch Navigation</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- FontAwesome untuk Icon Sosial Media -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        html, body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+}
+
+.app-frame {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100dvh;
+}
+
+main {
+    min-height: 0;
+    overscroll-behavior: contain;
+}
+
+.liquid-nav-container {
+    flex-shrink: 0;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
         @keyframes slideUp {
             from { transform: translateY(100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
@@ -57,7 +68,7 @@
             animation: glowRed 2s infinite ease-in-out;
         }
 
-        /* LIQUID CURVED BUBBLE NAVIGATION STYLES PERSIS SEPERTI CONTOH */
+        
         .liquid-nav-container {
             position: relative;
             width: 100%;
@@ -134,10 +145,10 @@
 </head>
 <body class="bg-slate-900 antialiased">
 
-    <!-- WRAPPER APLIKASI MOBILE -->
+    
     <div class="app-frame flex flex-col h-full w-full max-w-full overflow-hidden relative bg-slate-50">
 
-        <!-- HEADER / TOP APP BAR -->
+        
         <header class="bg-red-600 text-white sticky top-0 z-40 px-4 py-3.5 flex items-center justify-between shadow-md">
             <div class="flex items-center space-x-2.5">
                 <div class="w-9 h-9 rounded-2xl bg-white text-red-600 flex items-center justify-center font-black text-base shadow-sm">
@@ -156,10 +167,10 @@
             </a>
         </header>
 
-        <!-- AREA KONTEN UTAMA (SCROLLABLE) -->
+        
         <main class="flex-1 overflow-y-auto no-scrollbar pb-6">
             
-            <!-- SLIDER PROMO -->
+            
             <section class="p-4 pb-2">
                 <div class="relative w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-lg bg-red-100 border border-red-100">
                     <div id="slider-container" class="flex w-full h-full transition-transform duration-700 ease-in-out">
@@ -181,7 +192,7 @@
                 </div>
             </section>
 
-            <!-- KONTEN AREA -->
+            
             <section class="px-4 mt-2">
                 <div class="flex items-center justify-between mb-3">
                     <h3 id="judul-kategori" class="font-bold text-gray-900 text-xs uppercase tracking-wider">Aktivasi Tool & Schematic</h3>
@@ -190,18 +201,18 @@
                     </span>
                 </div>
 
-                <!-- CONTAINER PRODUK -->
+                
                 <div id="daftar-produk" class="grid grid-cols-2 gap-3 fade-in-content">
-                    <!-- Dinamis via JS -->
+                    
                 </div>
             </section>
 
         </main>
 
-        <!-- LIQUID BUBBLE NOTCH NAVIGATION BAR (PERSIS SEPERTI GAMBAR CONTOH) -->
+        
         <nav class="liquid-nav-container sticky bottom-0 z-40">
             <div class="liquid-nav-bar" id="liquid-wrapper">
-                <!-- Lingkaran Bulat Putih Mengapung -->
+                
                 <div id="liquid-bubble-indicator" class="liquid-bubble">
                     <div id="liquid-active-icon" class="text-red-600">
                         <i data-lucide="key-round" class="w-5 h-5"></i>
@@ -237,7 +248,7 @@
             </div>
         </nav>
 
-        <!-- MODAL PILIHAN PAKET & CHECKOUT WHATSAPP -->
+        
         <div id="modalCheckout" class="absolute inset-0 bg-black/60 hidden items-end justify-center z-50 backdrop-blur-xs">
             <div class="bg-white rounded-t-3xl w-full p-5 shadow-2xl relative animate-slide-up border-t border-red-100 max-h-[85vh] overflow-y-auto">
                 <button onclick="tutupModal()" class="absolute top-4 right-4 text-gray-400 hover:text-red-600 transition p-1">
@@ -256,12 +267,12 @@
                     <i data-lucide="tag" class="w-3.5 h-3.5 text-red-600"></i> Pilih Varian / Jenis Layanan:
                 </p>
 
-                <!-- PILIHAN VARIAN DINAMIS -->
+                
                 <div id="modalVarianContainer" class="space-y-2 mb-5">
-                    <!-- Diisi lewat JavaScript -->
+                    
                 </div>
 
-                <!-- TOMBOL WHATSAPP -->
+                
                 <button onclick="kirimKeWhatsApp()" class="w-full bg-emerald-600 text-white font-semibold py-3.5 rounded-2xl hover:bg-emerald-700 transition flex items-center justify-center space-x-2 text-xs shadow-lg shadow-emerald-600/20 active:scale-[0.98]">
                     <i data-lucide="message-square" class="w-4 h-4"></i>
                     <span>Beli Sekarang</span>
@@ -271,7 +282,7 @@
 
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    
     <script>
         const dataAktivasi = [
             {
@@ -499,34 +510,18 @@ const dataImei = [
     {
         nama: "Pairing 3B Semi Fast",
         fungsi: "Layanan pairing dengan estimasi pengerjaan semi-fast.",
-        foto: "https://play-lh.googleusercontent.com/7RyQmS6GG7S962X35wnhlXeJWF25bocYhnCP2lRMDMA2vrJWXrwIR9SK-OAPJeXZaOU=w240-h480-rw",
-        hargaMulai: "175.000",
-        varian: [
-            { durasi: "3B Semi Fast", harga: "175000", label: "Rp 175.000" }
-        ]
-    },
-    {
-        nama: "Pairing 3B Slow",
-        fungsi: "Layanan pairing dengan estimasi pengerjaan slow.",
-        foto: "https://play-lh.googleusercontent.com/7RyQmS6GG7S962X35wnhlXeJWF25bocYhnCP2lRMDMA2vrJWXrwIR9SK-OAPJeXZaOU=w240-h480-rw",
-        hargaMulai: "150.000",
-        varian: [
-            { durasi: "3B Slow", harga: "150000", label: "Rp 150.000" }
-        ]
-    },
-    {
-        nama: "Pairing 1B Semi Fast",
-        fungsi: "Layanan pairing dengan estimasi pengerjaan semi-fast.",
-        foto: "https://play-lh.googleusercontent.com/7RyQmS6GG7S962X35wnhlXeJWF25bocYhnCP2lRMDMA2vrJWXrwIR9SK-OAPJeXZaOU=w240-h480-rw",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0wHVPLaomKkwhI-AJNUMV1zXQkgqc2HLptNc9v6mslxH9Eo4zaCf_26_kQrATv4T8zYHi10J8pMMk8RcmYsVounxvLuWyXn7TFE6mPqcq1ElGsGWTZS6IEDutw2ihzmkeSeLh51EGQ_zmK3hY41TIz3lXJohMQQZIMWplrdITTfiYRYd6OnZD59V_LGU/s1254/file_00000000ec40821189316bec09bf722d.png",
         hargaMulai: "125.000",
         varian: [
+            { durasi: "3B Semi Fast", harga: "175000", label: "Rp 175.000" },
+            { durasi: "3B Slow", harga: "150000", label: "Rp 150.000" },
             { durasi: "1B Semi Fast", harga: "125000", label: "Rp 125.000" }
         ]
     },
     {
         nama: "Cek CEIR",
         fungsi: "Pengecekan status CEIR perangkat.",
-        foto: "https://play-lh.googleusercontent.com/7RyQmS6GG7S962X35wnhlXeJWF25bocYhnCP2lRMDMA2vrJWXrwIR9SK-OAPJeXZaOU=w240-h480-rw",
+        foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0wHVPLaomKkwhI-AJNUMV1zXQkgqc2HLptNc9v6mslxH9Eo4zaCf_26_kQrATv4T8zYHi10J8pMMk8RcmYsVounxvLuWyXn7TFE6mPqcq1ElGsGWTZS6IEDutw2ihzmkeSeLh51EGQ_zmK3hY41TIz3lXJohMQQZIMWplrdITTfiYRYd6OnZD59V_LGU/s1254/file_00000000ec40821189316bec09bf722d.png",
         hargaMulai: "10.000",
         varian: [
             { durasi: "Cek CEIR", harga: "10000", label: "Rp 10.000" }
@@ -601,19 +596,9 @@ const dataImei = [
                 ]
             },
             {
-                nama: "Chimera Tool (Sewa)",
-                fungsi: "Sewa akses Chimera Tool untuk repair multibrand.",
-                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_q9j8v_x8v9X/s1600/chimera.png",
-                hargaMulai: "15.000",
-                varian: [
-                    { durasi: "3 Jam", harga: "15000", label: "Rp 15.000" },
-                    { durasi: "6 Jam", harga: "25000", label: "Rp 25.000" }
-                ]
-            },
-            {
                 nama: "Hydra Tool (Sewa)",
                 fungsi: "Sewa Hydra Tool dongle digital durasi fleksibel.",
-                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_q9j8v_x8v9X/s1600/hydra.png",
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZXtgfgNjSk97J7wnaKkdP19YIp97OMXvW0Cyq3q_boG6CzcKMgF5G_ec&s=10",
                 hargaMulai: "10.000",
                 varian: [
                     { durasi: "3 Jam", harga: "10000", label: "Rp 10.000" },
@@ -663,22 +648,22 @@ const dataImei = [
             updateSlider();
         }, 4000);
 
-        // Fungsi Ganti Kategori dengan Animasi Bubble Mengapung Persis Gambar Referensi
+        
         function gantiKategori(kategori, index) {
             const wrapper = document.getElementById('liquid-wrapper');
             const bubble = document.getElementById('liquid-bubble-indicator');
             const activeIcon = document.getElementById('liquid-active-icon');
 
-            // Kalkulasi posisi X persis di tengah tombol menu yang diklik (lebar bubble 60px)
+
             const tabWidth = wrapper.offsetWidth / 6;
             const targetX = (index * tabWidth) + (tabWidth / 2) - 30;
             bubble.style.transform = `translateX(${targetX}px)`;
 
-            // Ganti icon di dalam bubble putih
+            
             activeIcon.innerHTML = `<i data-lucide="${iconNames[index]}" class="w-5 h-5"></i>`;
             lucide.createIcons();
 
-            // Sembunyikan icon pada baris bawah tab aktif, dan tampilkan kembali untuk tab non-aktif
+            
             document.querySelectorAll('.liquid-tab').forEach((btn, i) => {
                 const tabIcon = btn.querySelector('.tab-icon');
                 const tabLabel = btn.querySelector('span:last-child');
@@ -713,7 +698,7 @@ const dataImei = [
             }
         }
 
-        // Render Produk Grid 2 Kolom
+        
         function renderProduk(kategori) {
             const container = document.getElementById('daftar-produk');
             container.className = "grid grid-cols-2 gap-3 fade-in-content";
@@ -746,7 +731,7 @@ const dataImei = [
             lucide.createIcons();
         }
 
-        // Render Sosial Media Grid
+        
         function renderSosial() {
             const container = document.getElementById('daftar-produk');
             container.className = "grid grid-cols-2 gap-3 fade-in-content";
@@ -770,7 +755,7 @@ const dataImei = [
             });
         }
 
-        // Render Tampilan Info Server
+        
         function renderInfoServer() {
             const container = document.getElementById('daftar-produk');
             container.className = "grid grid-cols-1 gap-2.5 fade-in-content";
@@ -805,7 +790,7 @@ const dataImei = [
             lucide.createIcons();
         }
 
-        // Modal Handler Dinamis Varian
+        
         function bukaModal(item) {
             produkTerpilih = item;
             document.getElementById('modalNamaProduk').innerText = item.nama;
@@ -836,7 +821,7 @@ const dataImei = [
             document.getElementById('modalCheckout').classList.add('hidden');
         }
 
-        // Kirim WhatsApp
+        
         function kirimKeWhatsApp() {
             const selectedRadio = document.querySelector('input[name="durasi"]:checked');
             if (!selectedRadio) {
