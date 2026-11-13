@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#dc2626">
+<title>SUBANG DEV - Official Store</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0}
+body{overflow:hidden;min-height:100vh;min-height:100dvh}
+.app-frame{height:100vh;height:100dvh;min-height:0}
+main{min-height:0;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.no-scrollbar::-webkit-scrollbar{display:none}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.animate-slide-up{animation:slideUp .32s cubic-bezier(.16,1,.3,1)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fade-in-content{animation:fadeIn .3s ease both}
+@keyframes pulseDot{50%{opacity:.4}}
+.pulse-dot{animation:pulseDot 1.4s infinite}
+.text-glow-green{color:#16a34a}
+.liquid-nav-container{flex-shrink:0;width:100%;display:flex;justify-content:center;padding:10px 12px max(18px,env(safe-area-inset-bottom));background:#f8fafc}
+.liquid-nav-bar{position:relative;background:#181c24;border-radius:26px;display:flex;width:100%;max-width:390px;height:68px;box-shadow:0 12px 28px #0002;overflow:visible}
+.liquid-bubble{position:absolute;top:-25px;left:0;width:56px;height:56px;background:#fff;border:1px solid #fee2e2;border-radius:50%;box-shadow:0 5px 15px #0002;transition:transform .42s cubic-bezier(.34,1.56,.64,1);z-index:10;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.liquid-items{position:absolute;inset:0;display:flex;z-index:20}
+.liquid-tab{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;background:transparent;border:0;padding:5px 0 0}
+.liquid-tab:focus-visible{outline:2px solid #fff;outline-offset:-4px;border-radius:18px}
+.product-card{min-width:0}
+.product-image{width:100%;height:100%;aspect-ratio:4/3;object-fit:contain;border-radius:10px}
+.modal-option:has(input:checked){border-color:#dc2626;background:#fff1f2}
+#modalCheckout{transition:opacity .2s}
+#modalCheckout.hidden{display:none}
+@media(min-width:768px){
+ body{background:#0f172a;display:flex;justify-content:center;align-items:center;padding:20px}
+ .app-frame{width:390px;height:844px;background:#f8fafc;border-radius:42px;box-shadow:0 25px 60px #000b;overflow:hidden;border:8px solid #1e293b;position:relative}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body class="bg-slate-900 antialiased">
+<div class="app-frame flex flex-col w-full max-w-full overflow-hidden relative bg-slate-50">
+<header class="bg-red-600 text-white px-4 py-3.5 flex items-center justify-between shadow-md z-40 flex-shrink-0">
+ <div class="flex items-center gap-2.5">
+  <div class="w-9 h-9 rounded-2xl bg-white text-red-600 flex items-center justify-center shadow-sm"><i data-lucide="zap" class="w-5 h-5 fill-red-600"></i></div>
+  <div><h1 class="font-black text-sm tracking-wider uppercase leading-none">SUBANG DEV</h1><p class="text-[10px] text-red-100 font-medium mt-1 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>Official Store</p></div>
+ </div>
+ <a href="https://wa.me/6281223742357" target="_blank" rel="noopener noreferrer" class="bg-white/15 text-white text-[11px] font-semibold px-3 py-2 rounded-full border border-white/20 flex items-center gap-1.5"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i>Fast WA</a>
+</header>
+
+<main id="mainContent" class="flex-1 overflow-y-auto no-scrollbar pb-3">
+ <section class="p-4 pb-2">
+  <div class="relative w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-lg bg-red-100">
+   <div id="slider-container" class="flex w-full h-full transition-transform duration-700 ease-in-out">
+    <div class="w-full h-full flex-shrink-0"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwfgD_7AsiXcalv_Oj9l6f9AwzaS-t1kHFuTuwdX5RNLxsm5uEVr6myknRQ4XaEg2Fb_JMbMMLjhaAoSrj557IEHK5R9uHO54FLTWYAeHpGOW7IiqIMMb49PShE8Xt6YoZrAEckQgyKZBaC9MZl5c_WzZ4XTIdmIsZQNWCucclXDj5ndLmVI7H_z8z3IQ/s1774/file_00000000b334820bb77ca462ba945e2f.png" class="w-full h-full object-cover" alt="Banner Subang Dev"></div>
+    <div class="w-full h-full flex-shrink-0"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvs2Dl5lM1xKWPq4IywuOFxe112EivJaV5pcIhR2eo1tGVtxfH_-VWAnLIxCTFoVkUWy7ciciHD_pA9MZdFCnWLV4AocEQ2sYNPRQEwaXqxzJCrtvVswPyMDJFFiaEeQO7iBVLnSSpr0xw0vGAtCWdNUu-AnrqXflaSxUEN3aC2EknGRVOYEowtbF3Kew/s320/file_00000000f51c82308ea9716d9b74f5ed.png" class="w-full h-full object-cover" alt="Banner Layanan"></div>
+   </div>
+   <div id="slider-dots" class="absolute bottom-2.5 right-3 flex gap-1.5 z-10"><span class="dot w-4 h-1.5 rounded-full bg-white"></span><span class="dot w-1.5 h-1.5 rounded-full bg-white/60"></span></div>
+  </div>
+ </section>
+ <section class="px-4 mt-2 pb-4">
+  <div class="flex items-center justify-between mb-3"><h3 id="judul-kategori" class="font-bold text-gray-900 text-xs uppercase tracking-wider">Aktivasi Tool &amp; Schematic</h3><span id="sub-judul-kategori" class="text-[11px] text-red-600 font-semibold">Populer</span></div>
+  <div id="daftar-produk" class="grid grid-cols-2 gap-3 fade-in-content"></div>
+ </section>
+</main>
+
+<nav class="liquid-nav-container sticky bottom-0 z-40" aria-label="Navigasi kategori">
+ <div class="liquid-nav-bar" id="liquid-wrapper">
+  <div id="liquid-bubble-indicator" class="liquid-bubble"><div id="liquid-active-icon" class="text-red-600"><i data-lucide="key-round" class="w-5 h-5"></i></div></div>
+  <div class="liquid-items">
+   <button type="button" data-category="activasi" class="liquid-tab" aria-label="Aktivasi"><span class="tab-icon text-transparent"><i data-lucide="key-round" class="w-5 h-5"></i></span><span class="text-[9px] font-bold text-gray-200 mt-1">Aktivasi</span></button>
+   <button type="button" data-category="remote" class="liquid-tab" aria-label="Remote"><span class="tab-icon text-gray-400"><i data-lucide="laptop" class="w-5 h-5"></i></span><span class="text-[9px] font-medium text-gray-400 mt-1">Remote</span></button>
+   <button type="button" data-category="imei" class="liquid-tab" aria-label="Pairing"><span class="tab-icon text-gray-400"><i data-lucide="smartphone" class="w-5 h-5"></i></span><span class="text-[9px] font-medium text-gray-400 mt-1">Pairing</span></button>
+   <button type="button" data-category="sewa" class="liquid-tab" aria-label="Sewa"><span class="tab-icon text-gray-400"><i data-lucide="clock" class="w-5 h-5"></i></span><span class="text-[9px] font-medium text-gray-400 mt-1">Sewa</span></button>
+   <button type="button" data-category="sosial" class="liquid-tab" aria-label="Sosial"><span class="tab-icon text-gray-400"><i data-lucide="share-2" class="w-5 h-5"></i></span><span class="text-[9px] font-medium text-gray-400 mt-1">Sosial</span></button>
+   <button type="button" data-category="infoserver" class="liquid-tab" aria-label="Server"><span class="tab-icon text-gray-400"><i data-lucide="activity" class="w-5 h-5"></i></span><span class="text-[9px] font-medium text-gray-400 mt-1">Server</span></button>
+  </div>
+ </div>
+</nav>
+
+<div id="modalCheckout" class="absolute inset-0 bg-black/60 hidden items-end justify-center z-50 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modalNamaProduk">
+ <div class="bg-white rounded-t-3xl w-full p-5 shadow-2xl relative animate-slide-up border-t border-red-100 max-h-[88%] overflow-y-auto">
+  <button type="button" id="btnTutupModal" class="absolute top-4 right-4 text-gray-400 p-1" aria-label="Tutup"><i data-lucide="x" class="w-5 h-5"></i></button>
+  <div class="flex items-center gap-1.5 text-red-600 mb-1"><i data-lucide="shield-check" class="w-4 h-4"></i><h4 class="text-[10px] uppercase font-bold tracking-wider">SUBANG DEV Checkout</h4></div>
+  <h3 id="modalNamaProduk" class="text-base font-bold text-gray-900 mb-1 pr-8">Nama Produk</h3>
+  <p id="modalFungsiProduk" class="text-xs text-gray-500 mb-4 leading-relaxed"></p>
+  <p class="text-xs font-semibold text-gray-700 mb-2.5">Pilih Varian / Jenis Layanan:</p>
+  <div id="modalVarianContainer" class="space-y-2 mb-5"></div>
+  <button type="button" id="btnBeli" class="w-full bg-emerald-600 text-white font-semibold py-3.5 rounded-2xl flex items-center justify-center gap-2 text-xs shadow-lg active:scale-[0.98]"><i data-lucide="message-square" class="w-4 h-4"></i>Beli Sekarang</button>
+ </div>
+</div>
+</div>
+
+<script>
+	window.addEventListener("load",()=>{
+    gantiKategori("activasi",0);
+    updateSlider();
+    startSlider();
+    renderIcons();
+    requestAnimationFrame(posisiBubble);
+});
+document.addEventListener("DOMContentLoaded",()=>{
+    try {
+        gantiKategori("activasi",0);
+        updateSlider();
+        startSlider();
+        renderIcons();
+
+        requestAnimationFrame(()=>{
+            posisiBubble();
+        });
+
+    } catch(error) {
+        console.error("SUBANG DEV ERROR:",error);
+    }
+});
+"use strict";
+const nomorWhatsApp="6281223742357";
+const iconNames=["key-round","laptop","smartphone","clock","share-2","activity"];
+let produkTerpilih=null,activeIndex=0,currentSlide=0,sliderTimer=null,lastFocusedElement=null;
+
+const dataAktivasi=[
+{nama:"UnlockTool",fungsi:"Tool profesional unlock & flashing berbagai merek Android terlengkap.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtiyAxsXgTm9RJmpe9gl1Ir7Uk_nynWSp0UWHxbeidPTZjKuaIzWYJWD_TKM-93o69C3F1ssWeBXcuCPmU6n2Dm8A0LWQ_PQUMxNvS7SN0rJaFVDPipQLD5QdOw-uhKdDG52Bem98E-XURkl9HPrKrc5H3DWaG_VBEt51I8Ogm9uC5XOYdg9pKh6LL/s865/logo_box.png",hargaMulai:"330.000",varian:[["3 Bulan","330000"],["6 Bulan","490000"],["12 Bulan","780000"]]},
+{nama:"CF Tool",fungsi:"Solusi flashing dan repair perangkat Android mudah dan lengkap.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYHHJ5UaELcgzeyeCtJEcmh-O93GSNP8LJvLTBkXX078V9G8RBpEoCODwL_ONyhE_XmcnIkBaOYfNShuADU0qrvnhGrX08OuTLd53cq-mjELC2KRNOmh377AzspOHX7GXFzBvBXi3XZNOrpZOar8nMPZzncPYH7wlBz8nGHCdZg1-ZFTVS4BFpnPIM/s16000/cftool.jpeg",hargaMulai:"100.000",varian:[["1 Bulan","100000"],["3 Bulan","200000"],["6 Bulan","320000"],["12 Bulan","440000"]]},
+{nama:"Borneo Schematic",fungsi:"Schematic hardware profesional Android terlengkap dan akurat.",foto:"https://image.torob.com/base/images/Kj/p7/Kjp7OB8p5IutIKOU.jpg_/560x560.webp",hargaMulai:"250.000",varian:[["3 Bulan","250000"],["3 Bulan 2PC","385000"],["6 Bulan","350000"],["6 Bulan 2PC","600000"],["12 Bulan","600000"],["12 Bulan 2PC","850000"]]},
+{nama:"Pragmafix Schematic",fungsi:"Schematic jalur perbaikan hardware handphone terlengkap.",foto:"https://tse4.mm.bing.net/th/id/OIP.xF9EzMCwrR16b3fGXESpPQHaHa?pid=Api&P=0&h=220",hargaMulai:"125.000",varian:[["3 Bulan","125000"],["6 Bulan","225000"],["12 Bulan","350000"]]},
+{nama:"Orion Schematic",fungsi:"Panduan skematik perbaikan hardware ponsel profesional.",foto:"https://orion.estechschematics.com/assets/orion-logo.png",hargaMulai:"50.000",varian:[["1 Bulan","50000"],["3 Bulan","100000"],["6 Bulan","200000"],["12 Bulan","370000"],["12 Bulan 2PC","600000"]]},
+{nama:"DFT Tool",fungsi:"Solusi advanced flashing dan repair perangkat berfitur lengkap.",foto:"https://www.dftprotool.com/wp-content/uploads/2021/06/DFT-PRO.jpg",hargaMulai:"1.350.000",varian:[["12 Bulan","1350000"]]},
+{nama:"DT-Pro Tool",fungsi:"Aktivasi DT-Pro Tool untuk kebutuhan servis handphone.",foto:"https://placehold.co/400x300/dc2626/ffffff?text=DT+PRO",hargaMulai:"220.000",varian:[["1 Tahun","220000"]]},
+{nama:"E-GSM Tool",fungsi:"Tool serbaguna untuk perbaikan perangkat Android.",foto:"https://placehold.co/400x300/dc2626/ffffff?text=E-GSM",hargaMulai:"190.000",varian:[["1 Tahun","190000"]]},
+{nama:"EFT Pro",fungsi:"Easy Firmware Team Pro Tool untuk teknisi profesional.",foto:"https://placehold.co/400x300/dc2626/ffffff?text=EFT+PRO",hargaMulai:"350.000",varian:[["1 Tahun","350000"]]},
+{nama:"TFM Tool Pro",fungsi:"The Future of Mobile Tool untuk bypass dan flash.",foto:"https://placehold.co/400x300/dc2626/ffffff?text=TFM+TOOL",hargaMulai:"280.000",varian:[["1 Tahun","280000"]]},
+{nama:"SETOOL",fungsi:"Software untuk perbaikan perangkat Sony Ericsson dan Android.",foto:"https://placehold.co/400x300/dc2626/ffffff?text=SETOOL",hargaMulai:"450.000",varian:[["Aktivasi","450000"]]},
+{nama:"Octoplus Pro / FRP",fungsi:"Tool multi-brand kelas atas untuk teknisi seluler.",foto:"https://placehold.co/400x300/dc2626/ffffff?text=OCTOPLUS",hargaMulai:"850.000",varian:[["Aktivasi Full","850000"]]}
+];
+
+const dataRemote=[
+{nama:"Bypass iPhone 6 s/d X",fungsi:"Layanan bypass iPhone seri 6 hingga X.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkCVpI1fwBk3IpCB87gvzOCzCUfg68AZuNhAbMg_UDuSFhE5KhVbisIv1sPeVVLGn2WWpZ2ODYwFU1jOLhL6uZ9QA246WEl5g26SbgsZwx6N9dyREQ5lCMSSPIlBe-pnC9ciZYN6pcGaiY7E_KCYmGLD4yy5u8l5oD8AbnrzR7bz000i_qrHs5-63o_n0/s1448/file_00000000dafc81fa90257148aef23dad.png",hargaMulai:"75.000",varian:[["Bypass iPhone 6 s/d X","75000"]]},
+{nama:"Bypass iPhone XR s/d 17 Pro Max",fungsi:"Layanan bypass iPhone XR hingga 17 Pro Max, iOS 26.1.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiB6M3pjNFPGSOjgk1SUctFi6bd6XXDiS4gG4f2DXgPifsuQXUknyEP81sCv_fNTC-1lMobCSxXv3M59ZjjR_LzOreJtmNyCSMoYtfg4XuTptTpRnrrO-JE2YDpIC1NFnOXnojw83sul_Ubb6DYlfctbUnl0UYxSJnj9luSQcD5LX4WsVw5lR9wyyn1MQA/s1448/file_000000009d0881fab58c98f0e572d97d.png",hargaMulai:"100.000",varian:[["iOS 26.1","100000"]]},
+{nama:"Bypass Hallo iPhone XR s/d 17 Pro Max",fungsi:"Layanan bypass Hello Screen untuk perangkat yang kompatibel.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyWa2WltZ5BAcOimX06HS2hbYzE6_H2ffpy5XBG4tk1J063mrIHygMU18M7kQWn-7izA0oRMZOjRHCDnvqQ5th81xSz6XtKJWtdxxK-qrZyF_-0L4E-LXB77m_WQnm5Dy9IH3cwuC1hivsj7fLubUxhOXAeXtjbVX1N8Rp3Sdrppj_4csx691OOBmD5K8/s1448/file_00000000cff4820b9cefc051396fca8a.png",hargaMulai:"150.000",varian:[["iOS 27.0.1","150000"]]},
+{nama:"Bypass Passcode iPhone XR s/d 17 Pro Max",fungsi:"Layanan bypass passcode untuk perangkat yang kompatibel.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyWa2WltZ5BAcOimX06HS2hbYzE6_H2ffpy5XBG4tk1J063mrIHygMU18M7kQWn-7izA0oRMZOjRHCDnvqQ5th81xSz6XtKJWtdxxK-qrZyF_-0L4E-LXB77m_WQnm5Dy9IH3cwuC1hivsj7fLubUxhOXAeXtjbVX1N8Rp3Sdrppj_4csx691OOBmD5K8/s1448/file_00000000cff4820b9cefc051396fca8a.png",hargaMulai:"200.000",varian:[["iOS 27.0.1","200000"]]},
+{nama:"FRP Samsung",fungsi:"Layanan FRP Samsung untuk perangkat yang memenuhi syarat.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwd720r32ico-MAcRCjbfsfkJUZfqF-uGNf1zTw5rS2pSZS8SFGZkFD6XOdNom4cTn-AMemIEJVFEp4i6kUoBrGqWLko5VS1hsdWAmooAwi2BmH8M9_sCgPxhYl1s38TE7tDRimaekymr6oT1tmZX7ulOf6Y0byzu4OnVUFQlD-R3V4EZxufdaPZL5354/s1448/file_00000000a37882118a405400cee0409b.png",hargaMulai:"150.000",varian:[["FRP Samsung","150000"]]},
+{nama:"FRP Xiaomi",fungsi:"Layanan FRP Xiaomi untuk perangkat yang kompatibel.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHcLC1sLKdtXb9jH9dQ2WzNgXWeDDAlhyphenhyphenObLWpJu5u0APH6ekEH5q-BMkqA7fcm569EhreBotUF1US0odDXFPy0kr5O8WqWH-YwigkeM17nk4zfRRJd4jQvCBmG31WhAU_uXT9WnBYvOGzIZOPLvqTfKmnFvvS3-Vt7yAnxeZub5Rx93YiReogSHjzS7o/s1448/file_00000000cf6082118526173d5e118b2e.png",hargaMulai:"100.000",varian:[["FRP Xiaomi","100000"]]},
+{nama:"Mi-Cloud By Server",fungsi:"Layanan Mi Cloud melalui server untuk perangkat yang memenuhi syarat.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNIF6A1h2Bj0ek-6PJQWqrGKXhuiEv-mahPRZ07CRvYE6vQ3tB4ae8BQbB3-EMwWCZFXZ_n0X3mHyfFhlwlvFvFI4IBHeVvU4IeHDCih_yitq7dHxqjcvGVnEl7V1LQTP5L3o5oSAPBT-qvAvjcojYgV2qK1oCjXzPFB0D0SN9QzcWkg3TmW5kz2gPzTQ/s1448/file_00000000a530821189ff96e575788461.png",hargaMulai:"100.000",varian:[["Mi-Cloud By Server","100000"]]},
+{nama:"FRP Realme",fungsi:"Layanan FRP Realme dengan dukungan MediaTek dan Qualcomm.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEho4OX6Wc4Ri7SSJEWKNcmeH0uJacDHX8iIg515DuQvo60y_gqKGuh6lpPJV7IuPKJJWaQnq11jz7VTBKdAzqQhOeGKifP2l0waXuj2GD9Q-DoffRyadyNYGSGZQLrT_ZBHv5KSziBtlFduEqpYxLQWN6ij7r1yh3MZGKCmjdAKp4AT1ElYIxdyLnMG6yQ/s1448/file_000000008a6082118b4607233ef996b6.png",hargaMulai:"175.000",varian:[["MediaTek / Qualcomm","175000"]]},
+{nama:"Huawei ID",fungsi:"Layanan Huawei ID dengan pilihan lokal dan luar.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh__mYj_YHghOHJ7ZZbq-VXnFuZHJd_4rJgPyYjHfnxH7mUKvRaTukj0JKN0JDc_SCbxCX7aSOJdz7bC8jKFhv1bc25ZXKYoz5aV-6CM_wpaJqf5sRrVYGxUT5GAZ9aa7IOYRjwlhXsuiKryTnVq58VhePPzlcAbDhEi8NgSXg-asZRZB0L5E4X0r2byi8/s1448/file_00000000fd5c82079e26fd86ba3d3687.png",hargaMulai:"600.000",varian:[["Lokal","600000"],["Luar","800000"]]},
+{nama:"Infinix ID / Tecno ID / Itel ID",fungsi:"Pilihan layanan ID lokal sesuai jenis perangkat dan kebutuhan.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_wcxxkwPzdgPs0kkGo4NOiDNYyPUSunaZonppB9nt5T0zp-TxgLzpSt3klKokMUZtAqlI1I5jDoLBOkupN99HrJpqvlehydECT21bcjGVRa0fEpQFb7Xif0eLa5u2KEt4SiD5eigBDdSJtMLWKk0O2KOlE879rwITX8ddtULBTjmnhJ3eQkix_7Y15tQ/s1448/file_00000000359082119ab1a2c3b67bd433.png",hargaMulai:"100.000",varian:[["Dengan IMEI","100000"],["Tanpa IMEI","120000"]]}
+];
+
+const dataImei=[
+{nama:"Pairing 3B Semi Fast",fungsi:"Layanan pairing dengan estimasi pengerjaan semi-fast.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0wHVPLaomKkwhI-AJNUMV1zXQkgqc2HLptNc9v6mslxH9Eo4zaCf_26_kQrATv4T8zYHi10J8pMMk8RcmYsVounxvLuWyXn7TFE6mPqcq1ElGsGWTZS6IEDutw2ihzmkeSeLh51EGQ_zmK3hY41TIz3lXJohMQQZIMWplrdITTfiYRYd6OnZD59V_LGU/s1254/file_00000000ec40821189316bec09bf722d.png",hargaMulai:"125.000",varian:[["3B Semi Fast","175000"],["3B Slow","150000"],["1B Semi Fast","125000"]]},
+{nama:"Cek CEIR",fungsi:"Pengecekan status CEIR perangkat.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0wHVPLaomKkwhI-AJNUMV1zXQkgqc2HLptNc9v6mslxH9Eo4zaCf_26_kQrATv4T8zYHi10J8pMMk8RcmYsVounxvLuWyXn7TFE6mPqcq1ElGsGWTZS6IEDutw2ihzmkeSeLh51EGQ_zmK3hY41TIz3lXJohMQQZIMWplrdITTfiYRYd6OnZD59V_LGU/s1254/file_00000000ec40821189316bec09bf722d.png",hargaMulai:"10.000",varian:[["Cek CEIR","10000"]]}
+];
+
+const dataSewa=[
+{nama:"UnlockTool (Sewa)",fungsi:"Sewa akses akun UnlockTool resmi durasi singkat.",foto:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtiyAxsXgTm9RJmpe9gl1Ir7Uk_nynWSp0UWHxbeidPTZjKuaIzWYJWD_TKM-93o69C3F1ssWeBXcuCPmU6n2Dm8A0LWQ_PQUMxNvS7SN0rJaFVDPipQLD5QdOw-uhKdDG52Bem98E-XURkl9HPrKrc5H3DWaG_VBEt51I8Ogm9uC5XOYdg9pKh6LL/s865/logo_box.png",hargaMulai:"8.000",varian:[["3 Jam","8000"],["6 Jam","10000"],["12 Jam","15000"],["24 Jam","24000"]]},
+{nama:"Sigma Plus (Dongle)",fungsi:"Sewa dongle Sigma Plus untuk kebutuhan servis spesifik.",foto:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOh388f1CkLN4H_t-fsJgi8XQmw9lMXdWlQ4SunVeuWr-jA7SDBHKz6Y&s=10",hargaMulai:"130.000",varian:[["3 Jam","130000"]]},
+{nama:"Z3X Samsung Tool Pro",fungsi:"Sewa tool khusus perbaikan perangkat Samsung.",foto:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn0NJbM7K1tzqvAmwf4XvP3DAP1NSKMzE9VW2S4MKY7176CWkX2KiXVPA&s=10",hargaMulai:"60.000",varian:[["1 Jam","60000"],["2 Jam","70000"],["3 Jam","80000"]]},
+{nama:"CFTOOL (Sewa)",fungsi:"Sewa akses CFTOOL durasi fleksibel jam-an.",foto:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn5SlTZiaOsP01WYaUxzoqeeuI4pbac7UV_RufTSj_Cx-hUoVrpG0peKxU&s=10",hargaMulai:"9.000",varian:[["3 Jam","9000"],["12 Jam","20000"],["24 Jam","25000"]]},
+{nama:"TSM TOOL (Sewa)",fungsi:"Sewa TSM Tool untuk repair dan unlock cepat.",foto:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1wS5LMnt7O840UpF_NWVJu_BEsPzLyTBTQ&s",hargaMulai:"25.000",varian:[["6 Jam","25000"],["12 Jam","35000"]]},
+{nama:"DFTPro (Sewa)",fungsi:"Sewa akses DFTPro profesional cepat.",foto:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFD_lAbihdJaSeQGa6uIJPSD9yQQbhWOmRLig9pPF40bxNEu2d7xse64U&s=10",hargaMulai:"10.000",varian:[["3 Jam","10000"],["6 Jam","15000"],["12 Jam","25000"],["24 Jam","35000"]]},
+{nama:"Hydra Tool (Sewa)",fungsi:"Sewa Hydra Tool dongle digital durasi fleksibel.",foto:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZXtgfgNjSk97J7wnaKkdP19YIp97OMXvW0Cyq3q_boG6CzcKMgF5G_ec&s=10",hargaMulai:"10.000",varian:[["3 Jam","10000"],["12 Jam","20000"]]}
+];
+
+const dataSosial=[
+{nama:"WhatsApp Admin",fungsi:"Hubungi admin langsung via WhatsApp.",icon:"fab fa-whatsapp",link:"https://wa.me/6281223742357"},
+{nama:"Telegram Channel",fungsi:"Bergabung dengan channel dan grup resmi.",icon:"fab fa-telegram",link:"https://t.me/"},
+{nama:"YouTube Subang Dev",fungsi:"Tutorial dan video informasi seputar tool.",icon:"fab fa-youtube",link:"https://youtube.com/"},
+{nama:"Facebook Komunitas",fungsi:"Bergabung dalam forum komunitas teknisi.",icon:"fab fa-facebook",link:"https://facebook.com/"}
+];
+const infoServerList=["1B - 3B","FRP VIVO","FRP OPPO","FRP REALME","FRP XIAOMI","FRP MOTOROLA","HUAWEI ID","INFINIX-TECNO-ITEL ID","BYPASS IPHONE"].map(nama=>({nama,status:"online"}));
+
+function rupiah(angka){return "Rp "+Number(angka).toLocaleString("id-ID")}
+function renderIcons(){if(window.lucide)lucide.createIcons()}
+function posisiBubble(){
+ const wrapper=document.getElementById("liquid-wrapper");
+ const bubble=document.getElementById("liquid-bubble-indicator");
+ if(!wrapper||!bubble)return;
+ const tabWidth=wrapper.clientWidth/6;
+ const bubbleWidth=bubble.offsetWidth;
+ const targetX=activeIndex*tabWidth+(tabWidth-bubbleWidth)/2;
+ bubble.style.transform=`translateX(${Math.max(0,targetX)}px)`;
+}
+function gantiKategori(kategori,index){
+ activeIndex=index;
+ posisiBubble();
+ document.getElementById("liquid-active-icon").innerHTML=`<i data-lucide="${iconNames[index]}" class="w-5 h-5"></i>`;
+ document.querySelectorAll(".liquid-tab").forEach((btn,i)=>{
+  const icon=btn.querySelector(".tab-icon"),label=btn.querySelector("span:last-child");
+  const selected=i===index;
+  icon.className=selected?"tab-icon text-transparent":"tab-icon text-gray-400";
+  label.className=selected?"text-[9px] font-bold text-gray-200 mt-1":"text-[9px] font-medium text-gray-400 mt-1";
+  btn.setAttribute("aria-current",selected?"page":"false");
+ });
+ const container=document.getElementById("daftar-produk");
+ container.classList.remove("fade-in-content");void container.offsetWidth;container.classList.add("fade-in-content");
+ const judul=document.getElementById("judul-kategori"),sub=document.getElementById("sub-judul-kategori");
+ const namaKat={activasi:"Aktivasi Tool & Schematic",remote:"Pilihan Layanan Remote Service",imei:"Pilihan Layanan Pairing IMEI",sewa:"Pilihan Sewa Tool"};
+ if(kategori==="infoserver"){judul.textContent="Status Jaringan & Server";sub.textContent="● Status informasi";renderInfoServer()}
+ else if(kategori==="sosial"){judul.textContent="Sosial Media Resmi";sub.textContent="Hubungi Kami";renderSosial()}
+ else{judul.textContent=namaKat[kategori]||"Layanan";sub.textContent="🔥 Populer";renderProduk(kategori)}
+ renderIcons();
+}
+function renderProduk(kategori){
+ const container=document.getElementById("daftar-produk");container.className="grid grid-cols-2 gap-3 fade-in-content";container.replaceChildren();
+ const dataset={activasi:dataAktivasi,remote:dataRemote,imei:dataImei,sewa:dataSewa}[kategori]||[];
+ dataset.forEach(item=>{
+  const card=document.createElement("article");card.className="product-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between";
+  const imageBox=document.createElement("div");imageBox.className="relative overflow-hidden aspect-[4/3] bg-slate-100 p-2";
+  const img=document.createElement("img");img.src=item.foto;img.alt=item.nama;img.loading="lazy";img.className="product-image";
+  img.onerror=function(){this.onerror=null;this.src="https://placehold.co/400x300/f1f5f9/dc2626?text=SUBANG+DEV"};
+  imageBox.appendChild(img);
+  const content=document.createElement("div");content.className="p-3";
+  const title=document.createElement("h4");title.className="font-bold text-xs text-gray-900 leading-tight";title.textContent=item.nama;
+  const desc=document.createElement("p");desc.className="text-gray-400 text-[10px] mt-1 mb-2.5 line-clamp-2";desc.textContent=item.fungsi;
+  content.append(title,desc);
+  const bottom=document.createElement("div");bottom.className="p-3 pt-0 flex items-center justify-between gap-1";
+  const price=document.createElement("span");price.className="text-[10px] font-bold text-red-600";price.textContent="Mulai "+rupiah(item.hargaMulai.replace(/\./g,""));
+  const button=document.createElement("button");button.type="button";button.className="bg-red-600 text-white text-[11px] font-semibold px-3 py-1.5 rounded-xl active:scale-95";button.textContent="Pilih";button.addEventListener("click",()=>bukaModal(item));
+  bottom.append(price,button);card.append(imageBox,content,bottom);container.appendChild(card);
+ });
+}
+function renderSosial(){
+ const container=document.getElementById("daftar-produk");container.className="grid grid-cols-2 gap-3 fade-in-content";container.replaceChildren();
+ dataSosial.forEach(item=>{
+  const card=document.createElement("a");card.href=item.link;card.target="_blank";card.rel="noopener noreferrer";card.className="bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center justify-between min-h-32";
+  const iconBox=document.createElement("div");iconBox.className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-2";
+  const icon=document.createElement("i");icon.className=item.icon+" text-lg";iconBox.appendChild(icon);
+  const title=document.createElement("h4");title.className="font-bold text-xs text-gray-900 mb-1";title.textContent=item.nama;
+  const desc=document.createElement("p");desc.className="text-[10px] text-gray-400";desc.textContent=item.fungsi;
+  card.append(iconBox,title,desc);container.appendChild(card);
+ });
+}
+function renderInfoServer(){
+ const container=document.getElementById("daftar-produk");container.className="grid grid-cols-1 gap-2.5 fade-in-content";container.replaceChildren();
+ infoServerList.forEach(server=>{
+  const card=document.createElement("div");card.className="flex items-center justify-between p-3.5 rounded-2xl border bg-emerald-50 border-emerald-100 shadow-sm";
+  const left=document.createElement("div");left.className="flex items-center gap-3";
+  const iconBox=document.createElement("div");iconBox.className="w-9 h-9 rounded-xl flex items-center justify-center bg-white shadow-sm";iconBox.innerHTML='<i data-lucide="server" class="w-4 h-4 text-red-600"></i>';
+  const info=document.createElement("div");const title=document.createElement("h4");title.className="font-bold text-xs text-gray-900";title.textContent=server.nama;
+  const subtitle=document.createElement("p");subtitle.className="text-[10px] text-gray-500 mt-0.5";subtitle.textContent="Informasi layanan server";
+  info.append(title,subtitle);left.append(iconBox,info);
+  const status=document.createElement("div");status.className="flex items-center gap-1.5 font-black text-xs px-3 py-1.5 rounded-xl bg-white border border-gray-100 text-glow-green";status.innerHTML='<i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i><span>ONLINE</span>';
+  card.append(left,status);container.appendChild(card);
+ });renderIcons();
+}
+function bukaModal(item){
+ produkTerpilih=item;lastFocusedElement=document.activeElement;
+ document.getElementById("modalNamaProduk").textContent=item.nama;
+ document.getElementById("modalFungsiProduk").textContent=item.fungsi;
+ const container=document.getElementById("modalVarianContainer");container.replaceChildren();
+ item.varian.forEach((v,index)=>{
+  const label=document.createElement("label");label.className="modal-option flex items-center justify-between gap-2 p-3.5 border border-gray-200 rounded-2xl cursor-pointer transition text-xs bg-white";
+  const left=document.createElement("div");left.className="flex items-center gap-3";
+  const radio=document.createElement("input");radio.type="radio";radio.name="durasi";radio.value=v[0];radio.dataset.harga=v[1];radio.checked=index===0;radio.className="accent-red-600 w-4 h-4";
+  const name=document.createElement("span");name.className="font-bold text-gray-800 text-sm";name.textContent=v[0];
+  const price=document.createElement("span");price.className="font-bold text-red-600 text-sm whitespace-nowrap";price.textContent=rupiah(v[1]);
+  left.append(radio,name);label.append(left,price);container.appendChild(label);
+ });
+ const modal=document.getElementById("modalCheckout");modal.classList.remove("hidden");modal.classList.add("flex");renderIcons();
+}
+function tutupModal(){
+ const modal=document.getElementById("modalCheckout");modal.classList.remove("flex");modal.classList.add("hidden");produkTerpilih=null;
+ if(lastFocusedElement&&typeof lastFocusedElement.focus==="function")lastFocusedElement.focus();
+}
+function kirimKeWhatsApp(){
+ if(!produkTerpilih){alert("Silakan pilih produk terlebih dahulu.");return}
+ const selected=document.querySelector('input[name="durasi"]:checked');
+ if(!selected){alert("Silakan pilih varian layanan terlebih dahulu!");return}
+ const pesan=`Halo Admin Subang Dev, saya ingin memesan layanan digital berikut:\n\n📦 Layanan: ${produkTerpilih.nama}\n💡 Fungsi: ${produkTerpilih.fungsi}\n⚙️ Varian/Jenis: ${selected.value}\n💰 Total Biaya: ${rupiah(selected.dataset.harga)}\n\nMohon informasi langkah selanjutnya untuk proses pengerjaan/pembayaran.\n\nTerima kasih!`;
+ const url=`https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
+ const newWindow=window.open(url,"_blank","noopener,noreferrer");
+ if(!newWindow)window.location.href=url;
+ tutupModal();
+}
+function updateSlider(){
+ const slider=document.getElementById("slider-container"),dots=document.querySelectorAll(".dot");
+ slider.style.transform=`translateX(-${currentSlide*100}%)`;
+ dots.forEach((dot,i)=>dot.className=i===currentSlide?"dot w-4 h-1.5 rounded-full bg-white transition-all duration-300":"dot w-1.5 h-1.5 rounded-full bg-white/60 transition-all duration-300");
+}
+function startSlider(){
+ if(sliderTimer)clearInterval(sliderTimer);
+ sliderTimer=setInterval(()=>{currentSlide=(currentSlide+1)%2;updateSlider()},4500);
+}
+document.querySelectorAll(".liquid-tab").forEach((btn,index)=>btn.addEventListener("click",()=>gantiKategori(btn.dataset.category,index)));
+document.getElementById("btnTutupModal").addEventListener("click",tutupModal);
+document.getElementById("btnBeli").addEventListener("click",kirimKeWhatsApp);
+document.getElementById("modalCheckout").addEventListener("click",e=>{if(e.target===e.currentTarget)tutupModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!document.getElementById("modalCheckout").classList.contains("hidden"))tutupModal()});
+window.addEventListener("resize",posisiBubble);
+document.addEventListener("visibilitychange",()=>{if(document.hidden){clearInterval(sliderTimer);sliderTimer=null}else startSlider()});
+window.addEventListener("load",()=>{gantiKategori("activasi",0);updateSlider();startSlider();renderIcons();requestAnimationFrame(posisiBubble)});
+</script>
+</body>
+</html>
